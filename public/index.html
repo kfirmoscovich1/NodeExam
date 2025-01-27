@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT' crossorigin='anonymous'>
+  <title>API Documentation</title>
+</head>
+<body>
+  <div class="container mt-4">
+    <h1 class="mb-4">API Documentation</h1>
+    
+    <h2 class="mt-5">Toys API</h2>
+    <table class="table table-striped table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>Method</th>
+          <th>Route</th>
+          <th>Description</th>
+          <th>Example URLs</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- GET: /toys -->
+        <tr>
+          <td class="text-success">GET</td>
+          <td>/toys</td>
+          <td>Returns a list of toys</td>
+          <td>
+            <ul>
+              <li><strong>All toys:</strong> <a href="http://localhost:3001/toys" target="_blank">http://localhost:3001/toys</a></li>
+              <li><strong>Limit to 5 toys:</strong> <a href="http://localhost:3001/toys?limit=5" target="_blank">http://localhost:3001/toys?limit=5</a></li>
+              <li><strong>Skip the first 10 toys:</strong> <a href="http://localhost:3001/toys?limit=5&skip=10" target="_blank">http://localhost:3001/toys?limit=5&skip=10</a></li>
+            </ul>
+          </td>
+        </tr>
+        <!-- GET: /toys/search -->
+        <tr>
+          <td class="text-success">GET</td>
+          <td>/toys/search</td>
+          <td>Search toys by name or info</td>
+          <td>
+            <ul>
+              <li><strong>Search for "robot":</strong> <a href="http://localhost:3001/toys/search?s=robot" target="_blank">http://localhost:3001/toys/search?s=robot</a></li>
+              <li><strong>Search for "car":</strong> <a href="http://localhost:3001/toys/search?s=car" target="_blank">http://localhost:3001/toys/search?s=car</a></li>
+              <li><strong>Search for "block":</strong> <a href="http://localhost:3001/toys/search?s=block" target="_blank">http://localhost:3001/toys/search?s=block</a></li>
+            </ul>
+          </td>
+        </tr>
+        <!-- GET: /toys/category -->
+        <tr>
+          <td class="text-success">GET</td>
+          <td>/toys/category</td>
+          <td>Filter toys by category</td>
+          <td>
+            <ul>
+              <li><strong>Category "lego":</strong> <a href="http://localhost:3001/toys/category?category=lego" target="_blank">http://localhost:3001/toys/category?category=lego</a></li>
+              <li><strong>Category "vehicles":</strong> <a href="http://localhost:3001/toys/category?category=vehicles" target="_blank">http://localhost:3001/toys/category?category=vehicles</a></li>
+              <li><strong>Category "puzzle":</strong> <a href="http://localhost:3001/toys/category?category=puzzle" target="_blank">http://localhost:3001/toys/category?category=puzzle</a></li>
+            </ul>
+          </td>
+        </tr>
+        <!-- GET: /toys/prices -->
+        <tr>
+          <td class="text-success">GET</td>
+          <td>/toys/prices</td>
+          <td>Filter toys by price range</td>
+          <td>
+            <ul>
+              <li><strong>Price between 50 and 500:</strong> <a href="http://localhost:3001/toys/prices?min=50&max=500" target="_blank">http://localhost:3001/toys/prices?min=50&max=500</a></li>
+              <li><strong>Price between 100 and 300:</strong> <a href="http://localhost:3001/toys/prices?min=100&max=300" target="_blank">http://localhost:3001/toys/prices?min=100&max=300</a></li>
+              <li><strong>Price between 200 and 350 with skip:</strong> <a href="http://localhost:3001/toys/prices?min=200&max=350&skip=4" target="_blank">http://localhost:3001/toys/prices?min=200&max=350&skip=4</a></li>
+            </ul>
+          </td>
+        </tr>
+        <!-- GET: /toys/single/:id -->
+        <tr>
+          <td class="text-success">GET</td>
+          <td>/toys/single/:id</td>
+          <td>Get a single toy by ID</td>
+          <td>
+            <ul>
+              <li><strong>Get toy with ID "6796707831153c4606e357a0":</strong> <a href="http://localhost:3001/toys/single/6796707831153c4606e357a0" target="_blank">http://localhost:3001/toys/single/6796707831153c4606e357a0</a></li>
+              <li><strong>Get toy with ID "679670a031153c4606e357a2":</strong> <a href="http://localhost:3001/toys/single/679670a031153c4606e357a2" target="_blank">http://localhost:3001/toys/single/679670a031153c4606e357a2</a></li>
+            </ul>
+          </td>
+        </tr>
+        <!-- POST: /toys -->
+        <tr>
+          <td class="text-warning">POST</td>
+          <td>/toys</td>
+          <td>Create a new toy</td>
+          <td>
+            <ul>
+              <li><strong>Create a toy:</strong> <a href="http://localhost:3001/toys" target="_blank">http://localhost:3001/toys</a></li>
+            </ul>
+          </td>
+        </tr>
+        <!-- PUT: /toys/{id} -->
+        <tr>
+          <td class="text-primary">PUT</td>
+          <td>/toys/{id}</td>
+          <td>Update a toy by ID</td>
+          <td>
+            <ul>
+              <li><strong>Update toy with ID "6796704631153c4606e3579e":</strong> 
+              <a href="http://localhost:3001/toys/6796704631153c4606e3579e" target="_blank">http://localhost:3001/toys/6796704631153c4606e3579e</a></li>
+            </ul>
+          </td>
+        </tr>
+        <!-- DELETE: /toys/{id} -->
+        <tr>
+          <td class="text-danger">DELETE</td>
+          <td>/toys/{id}</td>
+          <td>Delete a toy by ID</td>
+          <td>
+            <ul>
+              <li><strong>Delete toy with ID "6796700931153c4606e3579c":</strong> 
+              <a href="http://localhost:3001/toys/6796700931153c4606e3579c" target="_blank">http://localhost:3001/toys/6796700931153c4606e3579c</a></li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
