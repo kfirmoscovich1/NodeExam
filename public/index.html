@@ -90,10 +90,22 @@
         <tr>
           <td class="text-warning">POST</td>
           <td>/toys</td>
-          <td>Create a new toy<br><span style="color: red;">*Need a token*</span></td>
+          <td>Create a new toy<br><span style="color: red;">*Token is required!*</span></td>
           <td>
             <ul>
-              <li><strong>Create a toy:</strong> <a href="/toys" target="_blank">https://nodejs-mongodb-2ink.onrender.com//toys</a></li>
+              <li>
+                <strong>Create a toy:</strong>
+                <br>
+                {<br>
+                  "name": "Toy Name",<br>
+                  "info": "info",<br>
+                  "category": "Action Figures",<br>
+                  "img_url": "https://example.com/toy-image.jpg",<br>
+                  "price": 1-999<br>
+                }
+                <br>
+                <a href="/toys" target="_blank">https://nodejs-mongodb-2ink.onrender.com//toys</a>
+              </li>
             </ul>
           </td>
         </tr>
@@ -101,11 +113,22 @@
         <tr>
           <td class="text-primary">PUT</td>
           <td>/toys/{id}</td>
-          <td>Update a toy by ID<br><span style="color: red;">*Need a token*</span></td>
+          <td>Update a toy by ID<br><span style="color: red;">*Token is required!*</span></td>
           <td>
             <ul>
-              <li><strong>Update toy with ID "6796704631153c4606e3579e":</strong> 
-              <a href="/toys/6796704631153c4606e3579e" target="_blank">https://nodejs-mongodb-2ink.onrender.com//toys/6796704631153c4606e3579e</a></li>
+              <li>
+                <strong>Update toy with ID:</strong>
+                <br>
+                {<br>
+                  "name": "Toy Name",<br>
+                  "info": "info",<br>
+                  "category": "Action Figures",<br>
+                  "img_url": "https://example.com/toy-image.jpg",<br>
+                  "price": 1-999<br>
+                }
+                <br>
+              <a href="/toys/id" target="_blank">https://nodejs-mongodb-2ink.onrender.com//toys/id</a>
+            </li>
             </ul>
           </td>
         </tr>
@@ -113,11 +136,15 @@
         <tr>
           <td class="text-danger">DELETE</td>
           <td>/toys/{id}</td>
-          <td>Delete a toy by ID<br><span style="color: red;">*Need a token*</span></td>
+          <td>Delete a toy by ID<br><span style="color: red;">*Token is required!*</span></td>
           <td>
             <ul>
-              <li><strong>Delete toy with ID "6796700931153c4606e3579c":</strong> 
-              <a href="/toys/6796700931153c4606e3579c" target="_blank">https://nodejs-mongodb-2ink.onrender.com//toys/6796700931153c4606e3579c</a></li>
+              <li>
+                <strong>Delete toy with ID:</strong> 
+                <br>
+                the ID of the toy to Delete <br>
+              <a href="/toys/id" target="_blank">https://nodejs-mongodb-2ink.onrender.com//toys/id</a>
+            </li>
             </ul>
           </td>
         </tr>
@@ -149,7 +176,7 @@
         <tr>
           <td class="text-success">GET</td>
           <td>/users/info</td>
-          <td>Returns info about the logged-in user <br><span style="color: red;">*Need a token*</span></td>
+          <td>Returns info about the logged-in user <br><span style="color: red;">*Token is required!*</span></td>
           <td>
             <ul>
               <li><a href="/users/info" target="_blank">https://nodejs-mongodb-2ink.onrender.com/users/info</a></li>
@@ -163,7 +190,15 @@
           <td>Create a new user</td>
           <td>
             <ul>
-              <li><a href="/users" target="_blank">https://nodejs-mongodb-2ink.onrender.com/users</a></li>
+              <li>
+                {<br>
+                  "name": "username",<br>
+                  "email": "example@example.com",<br>
+                  "password": "00000"<br>
+                }
+                <br>
+                <a href="/users" target="_blank">https://nodejs-mongodb-2ink.onrender.com/users</a>
+              </li>
             </ul>
           </td>
         </tr>
@@ -174,7 +209,15 @@
           <td>Authenticate and login a user</td>
           <td>
             <ul>
-              <li><a href="/users/login" target="_blank">https://nodejs-mongodb-2ink.onrender.com/users/login</a></li>
+              <li>
+                {<br>
+                  "name": "username",<br>
+                  "email": "example@example.com",<br>
+                  "password": "00000"<br>
+                }
+                <br>
+                <a href="/users/login" target="_blank">https://nodejs-mongodb-2ink.onrender.com/users/login</a>
+              </li>
             </ul>
           </td>
         </tr>
