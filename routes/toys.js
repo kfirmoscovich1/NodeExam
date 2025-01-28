@@ -99,15 +99,22 @@ router.post("/", auth, async (req, res) => {
 
 // DELETE | http://localhost:3001/toys/  :id
  router.delete("/:id",auth,async(req,res) => {
-    try{
-      const id = req.params.id;
-      const data = await ToyModel.deleteOne({_id:id,user_id:req.tokenData._id})
-      res.json(data);
+  try {
+    const id = req.params.id;
+    let data;
+
+    if (req.tokenData.role === "admin") {
+      data = await ToyModel.deleteOne({ _id: id });
+    } else {
+      data = await ToyModel.deleteOne({ _id: id, user_id: req.tokenData._id });
     }
-    catch (error) {
-      console.log(error);
-      res.status(502).json({err:"There problem come back later"})
-    }
+
+    res.json(data);
+  }
+  catch (error) {
+    console.log(error);
+    res.status(502).json({err:"There problem come back later"})
+  }
   })
 
 // PUT | http://localhost:3001/toys/  :id

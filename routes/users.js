@@ -1,18 +1,35 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const {auth} = require("../middlewares/auth");
-const { userValid, UserModel, loginValid, createToken } = require("../models/userModel");
+const {UserModel,userValid,loginValid,createToken} = require("../models/userModel")
+const {auth, authAdmin} = require("../middlewares/auth")
 const router = express.Router();
 
-router.get("/",(req,res) => {
-  res.json({msg:"users endpoint"});
+router.get("/",async(req,res) => {
+  res.json({msg:"Users endpoint"});
 })
 
-router.get("/info",auth,async(req,res) => {
+router.get("/list",authAdmin,async(req,res) => {
+  try {
+    const limit = 10;
+    const skip = req.query.skip || 0;
+    const data = await UserModel
+    .find({},{password:0})
+    .limit(limit)
+    .skip(skip)
+    res.json(data);  
+  } 
+  catch (error) {
+    console.log(error);
+    res.status(502).json({err:"There problem come back later"})
+  }
+})
+
+
+router.get("/info", auth,async(req,res) => {
   try{
     const data = await UserModel.findOne({_id:req.tokenData._id},{password:0})
-    res.json(data);
+    res.json(data)
   }
   catch (error) {
     console.log(error);
@@ -20,30 +37,27 @@ router.get("/info",auth,async(req,res) => {
   }
 })
 
-router.post("/", async (req, res) => {
+
+router.post("/",async(req,res) => {
   const validBody = userValid(req.body);
-  if (validBody.error) {
-    return res.status(400).json(validBody.error.details);
+  if(validBody.error){
+    return res.status(400).json(validBody.error.details)
   }
-  try {
-    console.log(req.body);
-    if (!req.body.role) {
-      req.body.role = "user";
-    }
+  try{
     const user = new UserModel(req.body);
-    user.password = await bcrypt.hash(user.password, 10);
+    user.password = await bcrypt.hash(user.password,10);
     await user.save();
-    user.password = "******";
-    res.status(201).json(user);
-  } catch (error) {
-    if (error.code == 11000) {
-      return res.status(400).json({ err: "Email already in system", code: 11000 });
+    user.password = "*******"
+    res.status(201).json(user)
+  }
+  catch (error) {
+    if(error.code == 11000){
+      return res.status(400).json({err:"Email already in system",code:11000})
     }
     console.log(error);
-    res.status(502).json({ err: "There problem come back later", error });
+    res.status(502).json({err:"There problem come back later"})
   }
-});
-
+})
 
 router.post("/login",async(req,res) => {
   const validBody = loginValid(req.body);
@@ -59,7 +73,8 @@ router.post("/login",async(req,res) => {
     if(!passwordValid){
       return res.status(401).json({msg:"password worng !"})
     }
-    const token = createToken(user._id);
+   
+    const token = createToken(user._id,user.role);
     res.json({token})
   }
   catch (error) {
@@ -68,5 +83,19 @@ router.post("/login",async(req,res) => {
   }
 })
 
+router.patch("/role/:id/:role", authAdmin, async(req,res) => {
+  try{
+    const id = req.params.id;
+    const role = req.params.role;
+    console.log(role);
+    console.log(id);
+    const data = await UserModel.updateOne({_id:id},{role:role})
+    res.json(data);
+  }
+  catch (error) {
+    console.log(error);
+    res.status(502).json({err:"There problem come back later"})
+  }
+})
 
 module.exports = router;
