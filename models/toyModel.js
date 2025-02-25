@@ -16,7 +16,7 @@ exports.validToy = (_reqBody) => {
     name:Joi.string().min(2).max(50).required(),
     info:Joi.string().min(2).max(200).required(),
     category:Joi.string().min(2).max(50).required(),
-    img_url:Joi.string().min(5).max(100),
+    img_url:Joi.string().min(5).max(300).optional(),
     price:Joi.number().min(1).max(999).required()
   })
   return joiSchema.validate(_reqBody);

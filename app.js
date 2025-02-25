@@ -1,12 +1,15 @@
 const express = require("express")
 const path = require("path");
 const http = require("http");
+const cors = require("cors");
 require("./db/mongoConnect")
 
 const {routesInit} = require("./routes/configRoutes")
 
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
