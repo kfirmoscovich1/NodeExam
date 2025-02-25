@@ -36,7 +36,6 @@ The project is organized into the following directories and files:
   - `users.js` - Handles user-related API requests.
 - **`public/`**
   - `index.html` - Home page.
-  - `spring.html`, `summer.html`, `winter.html` - Seasonal pages.
 
 ## How to Run the Application
 1. Ensure MongoDB is running.
